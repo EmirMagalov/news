@@ -1,0 +1,32 @@
+.comments{
+padding:10px;
+}
+
+.comments input{
+padding:10px;
+border:none;
+}
+.comments button{
+padding:10px;
+border:none;
+background-color:white;
+}
+.authusercomm{
+color:red;
+}
+
+li{
+ list-style: none;
+ }
+
+ .buttresp{
+ border:none;
+ }
+
+ .buttresp:hover{
+ opacity:0.7;
+ }
+
+ .liresp{
+ padding:10px;
+ }

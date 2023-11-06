@@ -1,0 +1,88 @@
+{%extends 'webnews/base.html'%}
+
+{%block body%}
+
+
+
+<div class="box">
+{%for i in news%}
+
+ <div class="card-container">
+        <div class="card" data-id="{{i.id}}">
+            <img src="{{i.photo.url}}" alt="">
+            <h3 class="name">{{i.title}}</h3>
+            <p class="desc">{{i.text}}</p>
+            {%for j in i.tags.all %}
+            <a class="tags" href="{% url 'tags' j.slug %}">#{{j}}</a>
+            {%endfor%}
+
+            <div class="likecount">
+            <form method="POST" action="{% url 'like'%}">
+            {% csrf_token %}
+            <input type="hidden" value="{{i.pk}}" name="like">
+                 {%if user.is_authenticated%}
+            <button data-action="likebutton" class="likebutton" type="submit" ><i data-action="likebutton" class="fa fa-heart-o"></i></button>
+                {%else%}
+                <div class="likeauthnot">
+                 <a href="{%url 'regist'%}"><i class="fa fa-heart-o"></i></a>
+                    </div>
+                 {%endif%}
+            </form>
+            <p class="count">{{i.likes.all.count}}</p>
+            </div>
+{%if user.is_authenticated%}
+
+
+        <div class="usercomments">
+
+
+            <ul class="first">
+                  {%for ii in i.comment.all%}
+
+                <li class="liresp">
+                    <span class="respuser">{{ii.user}} </span>
+                    <span>{{ii.text}}</span>
+                     <p style="display:none" class="commid">{{ii.id}}</p>
+                    <button data-action="response" class="buttresp">Ответить</button>
+                    {%for jj in ii.resp.all%}
+                    <div class="incommblock">
+                    <p style="display:none" class="incommuser">{{jj.user}}</p>
+                    <span style="font-size:14px;margin-left:25px;" class="respcomm">{{jj.user}}</span>
+                        <span>{{jj.text}}</span>
+                      <button data-action="responseincomm" class="buttresp">Ответить</button>
+                        </div>
+                    {%endfor%}
+
+
+
+                </li>
+
+                {%endfor%}
+                </ul>
+
+        </div>
+                 <div class="comments">
+            <form action="{%url 'comments'%}" method="POST">
+                {%csrf_token%}
+                <input type="hidden" class="inputresp" value="{{i.pk}}" name="comment">
+                <input class="commenttext" name="commenttext" type="text" placeholder="Добавить комментарий...">
+                <button data-action="public">Опубликовать</button>
+            </form>
+        </div>
+ {%endif%}
+            </div>
+    </div>
+
+
+{%endfor%}
+    </div>
+
+
+
+{%endblock%}
+
+
+
+{%block script%}
+
+{%endblock%}

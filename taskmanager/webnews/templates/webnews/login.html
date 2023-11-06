@@ -1,0 +1,12 @@
+{%extends 'webnews/base.html'%}
+
+
+{%block body%}
+<div class="logform">
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button>Войти</button>
+</form>
+    </div>
+{%endblock%}

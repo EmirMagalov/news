@@ -1,0 +1,31 @@
+{%extends 'webnews/base.html'%}
+
+{%block body%}
+<!--<h1>{{tags.0.tags.slug}}</h1>-->
+{%for i in tags%}
+
+ <div class="card-container">
+        <div class="card" data-id="{{i.id}}">
+            <img src="{{i.photo.url}}" alt="">
+            <h3 class="name">{{i.title}}</h3>
+            <p class="desc">{{i.text}}</p>
+            {%for j in i.tags.all %}
+            <a class="tags" href="{% url 'tags' j.slug %}">#{{j}}</a>
+            {%endfor%}
+            <p class="count">{{i.likes.all.count}}</p>
+<form method="post" action="{% url 'like'%}">
+    {% csrf_token %}
+    <input type="hidden" value="{{i.pk}}" name="like">
+
+    <button data-action="likebutton" class="likebutton" type="submit" ><i data-action="likebutton" class="fa fa-heart-o"></i></button>
+
+
+
+</form>
+        </div>
+</div>
+
+
+{%endfor%}
+
+{%endblock%}

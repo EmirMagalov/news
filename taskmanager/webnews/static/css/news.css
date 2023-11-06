@@ -1,0 +1,53 @@
+.card-container {
+    display: grid;
+    justify-content: center; /* Выравнивание по центру горизонтально */
+    grid-template-columns: 1fr 1fr; /* Создаем две равные колонки */
+    grid-gap: 10px; /* Расстояние между элементами в сетке */
+    max-width: 400px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Выравнивание контейнера по центру */
+}
+
+.card {
+    width:600px;
+    background: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top:20px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.tags{
+text-decoration:none;
+color:#3399FF;
+}
+
+
+.likebutton{
+border:none;
+font-size:30px;
+background-color:inherit;
+margin-top:8px;
+}
+#load-more-button{
+position:absolute;
+bottom:0;
+left:50%
+}
+.likecount{
+ display: grid;
+  grid-template-columns: 1fr 1fr;
+  width:60px;
+  margin-top:20px;
+}
+.likeauthnot{
+border:none;
+font-size:30px;
+margin:8px 8px 0 0;
+color:black;
+}
